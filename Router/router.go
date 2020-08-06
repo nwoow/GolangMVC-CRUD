@@ -5,8 +5,8 @@ import (
 
 	controllers "wordplay/Controllers"
 
-	"github.com/Sirupsen/logrus"
 	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 )
 
 func Router(logger logrus.FieldLogger) {

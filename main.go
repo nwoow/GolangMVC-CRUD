@@ -8,8 +8,8 @@ import (
 	models "wordplay/Models"
 	"wordplay/Router"
 
-	"github.com/Sirupsen/logrus"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
+	"github.com/sirupsen/logrus"
 )
 
 var (

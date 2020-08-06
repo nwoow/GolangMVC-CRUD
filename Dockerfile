@@ -1,26 +1,28 @@
-# Start from the latest golang base image
-FROM golang:latest
+ARG GO_VERSION=1.13
 
-# Add Maintainer Info
-LABEL maintainer="Nilay Singh <nilayy1234@gmail.com>"
+FROM golang:${GO_VERSION}-alpine AS builder
 
-# Set the Current Working Directory inside the container
-WORKDIR /app
+RUN apk update && apk add alpine-sdk git && rm -rf /var/cache/apk/*
 
-# Copy go mod and sum files
-COPY go.mod go.sum ./
+RUN mkdir -p /api
+WORKDIR /api
 
-# Download all dependencies. Dependencies will be cached if the go.mod and go.sum files are not changed
+COPY go.mod .
+COPY go.sum .
 RUN go mod download
 
-# Copy the source from the current directory to the Working Directory inside the container
 COPY . .
+RUN go build -o ./app 
 
-# Build the Go app
-RUN go build -o main .
+FROM alpine:latest
 
-# Expose port 8080 to the outside world
+RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
+
+RUN mkdir -p /api
+WORKDIR /api
+COPY --from=builder /api/app .
+COPY --from=builder /api/test.db .
+
 EXPOSE 8080
 
-# Command to run the executable
-CMD ["./main"]
+ENTRYPOINT ["./app"]
