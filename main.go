@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"regexp"
+	"time"
 	models "wordplay/Models"
 	"wordplay/Router"
 
@@ -14,6 +16,12 @@ var (
 	rxURL = regexp.MustCompile(`^/regexp\d*`)
 )
 
+func say(s string) {
+	for i := 0; i < 5; i++ {
+		time.Sleep(100 * time.Millisecond)
+		fmt.Println(s)
+	}
+}
 func main() {
 	models.ConnectDataBase() // new
 	logger := logrus.New()
@@ -27,7 +35,6 @@ func main() {
 
 	defer file.Close()
 	logger.SetOutput(file)
-
 	Router.Router(logger)
 
 }

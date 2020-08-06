@@ -12,9 +12,9 @@ import (
 func Router(logger logrus.FieldLogger) {
 	r := gin.New()
 	r.Use(Logger.Logger(logger), gin.Recovery())
-	r.POST("/books", controllers.CreateBook)
-	r.GET("/books", controllers.FindBooks)        // new
-	r.GET("/books/:id", controllers.FindBook)     // new
-	r.PATCH("/books/:id", controllers.UpdateBook) // new
+	// r.POST("/books", controllers.CreateBook)
+	r.GET("/logs", controllers.Listerror) // new
+	// r.GET("/books/:id", controllers.FindBook)     // new
+	// r.PATCH("/books/:id", controllers.UpdateBook) // new
 	r.Run(":8080")
 }

@@ -14,3 +14,8 @@ type UpdateBookInput struct {
 	Title  string `json:"title"`
 	Author string `json:"author"`
 }
+type Logger struct {
+	ID    uint   `json:"id" gorm:"primary_key"`
+	Title string `json:"title"`
+	Error string `json:"error"`
+}

@@ -4,6 +4,7 @@ import (
 	"math"
 	"os"
 	"time"
+	models "wordplay/Models"
 
 	"github.com/Sirupsen/logrus"
 	"github.com/gin-gonic/gin"
@@ -56,11 +57,14 @@ func Logger(logger logrus.FieldLogger) gin.HandlerFunc {
 		} else {
 			// msg := fmt.Sprintf("%s - %s [%s] \"%s %s\" %d %d \"%s\" \"%s\" (%dms)", clientIP, hostname, time.Now().Format(timeFormat), c.Request.Method, path, statusCode, dataLength, referer, clientUserAgent, latency)
 			if statusCode > 499 {
-				entry.Error("msg")
+				entry.Error("499")
 			} else if statusCode > 399 {
-				entry.Warn("msg")
+				entry.Warn("399")
+				book := models.Logger{Title: "Something is wrong", Error: string(statusCode)}
+				models.DB.Create(&book)
 			} else {
-				entry.Info("msg")
+				entry.Info("400")
+
 			}
 		}
 	}
