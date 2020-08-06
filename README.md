@@ -6,5 +6,35 @@ And then add dependecies this code uses:
 
 	"github.com/Sirupsen/logrus" 
 	"github.com/jinzhu/gorm/dialects/sqlite"
-  "github.com/gin-gonic/gin" 
-  "github.com/jinzhu/gorm"
+  	"github.com/gin-gonic/gin" 
+  	"github.com/jinzhu/gorm"
+	
+You can install all packages before running the code:
+
+After installing packages simpley run this:
+
+	go run main.go
+ 
+ 
+ # Features of this code:
+ 
+ If you run the code you can hit the URL:
+ 
+ 	http://localhost:8080/
+
+This will capture a log with error and you can see the logs in this URL:
+
+	http://localhost:8080/logs
+	
+
+
+ # Objective of the code:
+ 
+ This code is using logrus logger to log all the logs in file called gin.log as json.
+ 
+ And whenever it sees any statuscode which is less than:
+ 
+ 	statusCode > 399
+	
+It will capture the logs in databse and you can see that logs using URL/logs 
+ 
