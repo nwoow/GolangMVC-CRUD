@@ -1,4 +1,4 @@
-# GolangMVC-CRUD
+# Golang MVC-CRUD
 
 To run the Code clone the code:
 
