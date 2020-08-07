@@ -11,7 +11,7 @@ And then add dependecies this code uses:
 	
 You can install all packages before running the code:
 
-After installing packages simpley run this:
+After installing packages simply run this:
 
 	go run main.go
  
