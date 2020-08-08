@@ -16,21 +16,9 @@ After installing packages simply run this:
 	go run main.go
  
  
- # Features of this code:
- 
- If you run the code you can hit the URL:
- 
- 	http://localhost:8080/
-
-This will capture a log with error and you can see the logs in this URL:
-
-	http://localhost:8080/logs
-	
-
-
  # Objective of the code:
  
- In this code you can add a configuration list for logs using:
+In this code you can add a configuration list for logs using:
 
 	http://localhost:8080/logconfig Method:  POST
 	BODY: {
@@ -41,7 +29,7 @@ This will capture a log with error and you can see the logs in this URL:
 	  "loglevel": "info"
 	}
  
-To list all the confguations file hit this URL:
+To list all the configurations file hit this URL:
 
 	http://localhost:8080/logconfiglist Method:  GET
 
@@ -49,11 +37,14 @@ To check all the logs hit this URL:
 
 	http://localhost:8080/logs
 	
-You can create a configuration file uisng logconfig and you can find a post man coolection in this code postman.json.
+You can create a configuration file using log config and you can find a postman collection in this code postman.json.Whenever you add a configuration it will take the last filename and read the file and check if the level of the log is == loglevel then it will push all data to the DB and you can see that in logs URL.Feature if you add or update the DB of level and filename it will not sync at the moment.
 
-Whenver you add a configuration it will take the last filename and read the file and check if level of log is == loglevel then it will push all data to the db and you can see that in logs url.
+There are two sample file in this code:
 
-Feature if you add or update the db of level and filename it will not sync at the moment. 
+	gin.log
+	gin_log1.log
+	
+Warning of gin.log last line is info and gin_log1.log  is warning this code will log all the warning with info else it will not log.
 
 # Run the code using Docker:
 
