@@ -30,13 +30,30 @@ This will capture a log with error and you can see the logs in this URL:
 
  # Objective of the code:
  
- This code is using logrus logger to log all the logs in file called gin.log as json.
+ In this code you can add a configuration list for logs using:
+
+	http://localhost:8080/logconfig Method:  POST
+	BODY: {
+	  "title": "Start with Why",
+	  "filename": "gin.log",
+	  "logtype": "gin.log",
+	  "sitename": "gin.log",
+	  "loglevel": "info"
+	}
  
- And whenever it sees any statuscode which is less than:
- 
- 	statusCode > 399
+To list all the confguations file hit this URL:
+
+	http://localhost:8080/logconfiglist Method:  GET
+
+To check all the logs hit this URL:
+
+	http://localhost:8080/logs
 	
-It will capture the logs in databse and you can see that logs using URL/logs 
+You can create a configuration file uisng logconfig and you can find a post man coolection in this code postman.json.
+
+Whenver you add a configuration it will take the last filename and read the file and check if level of log is == loglevel then it will push all data to the db and you can see that in logs url.
+
+Feature if you add or update the db of level and filename it will not sync at the moment. 
 
 # Run the code using Docker:
 
