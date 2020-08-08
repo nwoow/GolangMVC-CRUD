@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "3e0d9128-ada3-43bd-be6b-073d86e2fe0b",
+		"name": "Gotest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "logconfiglist",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Start with Why\",\n  \"filename\": \"gin.log\",\n  \"logtype\": \"gin.log\",\n  \"sitename\": \"gin.log\",\n  \"loglevel\": \"info\"\n\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/logconfig",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"logconfig"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logconfiglist",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/logconfiglist",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"logconfiglist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list of logs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/logs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"logs"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
