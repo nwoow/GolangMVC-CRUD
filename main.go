@@ -1,28 +1,34 @@
 package main
 
 import (
-	"fmt"
 	"os"
-	"regexp"
 	"time"
 	models "wordplay/Models"
 	"wordplay/Router"
+	"wordplay/Tali"
 
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"github.com/sirupsen/logrus"
 )
 
-var (
-	rxURL = regexp.MustCompile(`^/regexp\d*`)
-)
-
-func say(s string) {
-	for i := 0; i < 5; i++ {
-		time.Sleep(100 * time.Millisecond)
-		fmt.Println(s)
+func log_event() {
+	c := time.Tick(5 * time.Second)
+	var Logconfigure []models.Logconfigure
+	models.DB.Last(&Logconfigure)
+	var file string
+	if err := models.DB.Last(&Logconfigure).Error; err != nil {
+		file = "gin.log"
+	} else {
+		file = Logconfigure[0].Filename
 	}
+	println(file)
+	for _ = range c {
+		Tali.Tali1(file)
+	}
+
 }
 func main() {
+
 	models.ConnectDataBase() // new
 	logger := logrus.New()
 	logger.Formatter = &logrus.JSONFormatter{}
@@ -35,6 +41,7 @@ func main() {
 
 	defer file.Close()
 	logger.SetOutput(file)
+	go log_event()
 	Router.Router(logger)
 
 }
